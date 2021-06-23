@@ -1,0 +1,22 @@
+// Variables Custom
+
+/* Bootstrap Colors */
+$primary:       #1a125a !default;
+$secondary:     #c0c0c0 !default;
+$success:       #53ce47 !default;
+$info:          #00adee !default;
+$warning:       #fcb823 !default;
+$danger:        #e72c2e !default;
+$light:         #f9f9f9 !default;
+$dark:          #2a3c47 !default;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+) !default;
