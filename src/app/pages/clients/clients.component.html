@@ -1,0 +1,54 @@
+
+<div class="card" style="min-height: 75vh;">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <h4 class="card-title">
+                    Lista de clientes
+                </h4>
+            </div>
+        </div><br>
+
+        <div *ngIf="service.entities | async as entities; else spinner">
+            <table class="table table-borderless border table-responsive-md">
+                <thead class="thead-light border-bottom">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th class="text-right">
+                            <button class="btn btn-info btn-sm">
+                                Agregar Nuevo
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-template ngFor [ngForOf]="entities" let-client>
+                        <tr>
+                            <td>{{ client.id }}</td>
+                            <td>{{ client.name }}</td>
+                            <td>
+                                <div class="d-flex justify-content-end w-100">
+                                    <button class="btn btn-sm btn-info text-white mr-2">
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-danger text-white">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+
+        <ng-template #spinner>
+            <div class="row justify-content-center mt-5">
+                <div class="col-auto">
+                    <div class="spinner-border text-info"></div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

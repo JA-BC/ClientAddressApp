@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import './scss/utils/variables';
-@import './scss/bootstrap/bootstrap.scss';
+@import './scss/utils/variables'; // Custom variables
+@import './scss/bootstrap/bootstrap';
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import './scss/scaffolding'; // Initial styles
