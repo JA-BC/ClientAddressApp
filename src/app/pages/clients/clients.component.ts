@@ -10,6 +10,8 @@ import { ClientsService } from 'src/app/providers/clients.service';
 })
 export class ClientsComponent implements OnInit {
 
+    page = 1;
+
     constructor(
         public readonly service: ClientsService,
         private readonly modal: NgbModal

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ClientsService } from 'src/app/providers/clients.service';
 
 import { ClientsComponent } from './clients.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
         AngularFirestoreModule,
         SharedModule,
         FormsModule,
+        NgxPaginationModule,
         RouterModule.forChild(routes)
     ],
     exports: [],

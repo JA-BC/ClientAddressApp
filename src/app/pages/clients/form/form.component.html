@@ -51,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let a of service.model?.address">
+                            <tr *ngFor="let a of service.model?.address | paginate: { itemsPerPage: 4, currentPage: page }">
                                 <td>{{ a.name }}</td>
                                 <td class="text-right">
                                     <button class="btn btn-danger btn-sm" (click)="deleteAddress(a.id)" type="button">
@@ -68,6 +68,14 @@
                             </tr>                      
                         </tfoot>
                     </table>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <pagination-controls (pageChange)="page = $event" responsive="true" nextLabel="Siguiente"
+                        previousLabel="Anterior" autoHide="true">
+                    </pagination-controls>
                 </div>
             </div>
         </form>

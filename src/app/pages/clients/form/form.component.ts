@@ -12,6 +12,8 @@ export class ClientsFormComponent implements OnInit, OnDestroy {
 
     @Input() modalRef: NgbModalRef;
 
+    page = 1;
+
     constructor(
         public readonly service: ClientsService
     ) { }
