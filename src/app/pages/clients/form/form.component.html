@@ -1,0 +1,91 @@
+<div class="card border-0">
+    <div class="card-header bg-dark">
+        <div class="row align-items-center">
+            <div class="col-8">
+                <h6 class="m-0 text-white">
+                    {{ service.editing ? 'Editar' : 'Agregar nuevo' }} cliente
+                </h6>
+            </div>
+            <div class="col-4 text-right">
+                <button class="btn" (click)="modalRef.dismiss()">
+                    <span class="text-white">
+                        X
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form #form="ngForm">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-8" [input-wrapper]="name" label="Nombre">
+                    <input type="text" class="form-control" name="name" [(ngModel)]="service.model.name"
+                        #name="ngModel" ngbAutoFocus required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Dirección</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="addressName" placeholder="Nueva dirección" #addressName
+                            (keyup.enter)="addAddress(addressName)">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" (click)="addAddress(addressName)"
+                                placement="bottom" ngbTooltip="Presiona para agregar">
+                                &nbsp;&#43;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h6>Direcciones agregadas</h6>
+                    <table class="table table-borderless border table-responsive-md">
+                        <thead class="thead-light border-bottom">
+                            <tr>
+                                <th>Dirección</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of service.model?.address">
+                                <td>{{ a.name }}</td>
+                                <td class="text-right">
+                                    <button class="btn btn-danger btn-sm" (click)="deleteAddress(a.id)" type="button">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot *ngIf="service.model?.address?.length < 1">
+                            <tr>
+                                <td colspan="99" class="text-center">
+                                    No tiene direcciones
+                                </td>
+                            </tr>                      
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer bg-white">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="active" name="active"
+                        [(ngModel)]="service.model.active">
+                    <label class="custom-control-label" for="active">Activo</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-info btn-block" [disabled]="form.invalid" (click)="save()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

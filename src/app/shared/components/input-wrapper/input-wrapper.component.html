@@ -1,0 +1,11 @@
+<div class="form-group" [ngClass]="{'has-error': ctrl?.invalid && (ctrl?.touched && ctrl?.dirty)}">
+    <label [for]="ctrl?.name" [ngClass]="[labelClass ? labelClass : '']" *ngIf="label">
+        {{ label }}
+    </label>
+    <ng-content></ng-content>
+    <div *ngIf="ctrl && ctrl?.invalid && (ctrl?.touched && ctrl?.dirty)">
+        <small class="text-danger">
+            {{ errorMsg }}
+        </small>
+    </div>
+</div>

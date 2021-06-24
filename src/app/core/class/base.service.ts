@@ -69,7 +69,7 @@ export class FirebaseService<TModel extends IEntity<string>> {
                 tap(() => this.onStateChange(EServiceState.Load)),
                 map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as TModel;
-                    // data.id = a.payload.doc.id; // Enable to get firebase doc id
+                    data.id = a.payload.doc.id; // Enable to get firebase doc id
                     return data;
                 })),
                 tap(() => this.onLoaded.next(this.entities)),
@@ -121,10 +121,6 @@ export class FirebaseService<TModel extends IEntity<string>> {
             return;
         }
 
-        console.log('[BASE_SERVICE_CHANGE_STATE]',
-            '\nBEFORE: '+EServiceState[this.state],
-            '\nAFTER: '+EServiceState[state],
-            '\nSERVICE: '+Object.getPrototypeOf(this).constructor.name);
         this._onState$.next(state);
         this.state = state;
         return state;

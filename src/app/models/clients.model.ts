@@ -2,5 +2,11 @@ import { IEntity } from "../core/interfaces/service.model";
 
 export interface IClientsModel extends IEntity<string> {
     name: string;
-    status: any;
+    active: boolean;
+    address: IAddressModel[];
+}
+
+export interface IAddressModel {
+    id: string | number;
+    name: string;
 }

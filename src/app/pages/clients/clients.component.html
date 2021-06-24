@@ -10,13 +10,15 @@
         </div><br>
 
         <div *ngIf="service.entities | async as entities; else spinner">
-            <table class="table table-borderless border table-responsive-md">
+            <table class="table table-bordered border table-responsive-md">
                 <thead class="thead-light border-bottom">
                     <tr>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>Nombre</th>
+                        <th>Direcciones</th>
+                        <th>Activo</th>
                         <th class="text-right">
-                            <button class="btn btn-info btn-sm">
+                            <button class="btn btn-info btn-sm" (click)="openFormAsync(form)">
                                 Agregar Nuevo
                             </button>
                         </th>
@@ -25,14 +27,20 @@
                 <tbody>
                     <ng-template ngFor [ngForOf]="entities" let-client>
                         <tr>
-                            <td>{{ client.id }}</td>
+                            <!-- <td>{{ client.id }}</td> -->
                             <td>{{ client.name }}</td>
+                            <td>{{ client.address.length }}</td>
+                            <td>
+                                <span class="badge d-block" [ngClass]="[client.active ? 'badge-success' : 'badge-danger']"
+                                    style="width: 1.5rem; height: 1.5rem;">
+                                </span>
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-end w-100">
-                                    <button class="btn btn-sm btn-info text-white mr-2">
+                                    <button class="btn btn-sm btn-info text-white mr-2" (click)="editClient(form, client)">
                                         Editar
                                     </button>
-                                    <button class="btn btn-sm btn-danger text-white">
+                                    <button class="btn btn-sm btn-danger text-white" (click)="deleteClient(client)">
                                         Eliminar
                                     </button>
                                 </div>
@@ -40,6 +48,13 @@
                         </tr>
                     </ng-template>
                 </tbody>
+                <tfoot *ngIf="entities.length < 1">
+                    <tr>
+                        <td colspan="99" class="text-center">
+                            No hay registros
+                        </td>
+                    </tr>                      
+                </tfoot>
             </table>
         </div>
 
@@ -52,3 +67,7 @@
         </ng-template>
     </div>
 </div>
+
+<ng-template #form let-modal>
+    <app-clients-form [modalRef]="modal"></app-clients-form>
+</ng-template>
